@@ -1,4 +1,4 @@
-# Django ToDo list
+#  Django ToDo list
 
 This is a todo list web application with basic features of most web apps, i.e., accounts/login, API, and interactive UI. To do this task, you will need:
 
@@ -29,3 +29,15 @@ Now you can browse the [API](http://localhost:8000/api/) or start on the [landin
 
 ## Task
 
+Create a GitHub Actions workflow for this project. The workflow should:
+
+1. Run on every push to the `main` branch and pull requests to the `main` branch.
+2. Run name should contain information about user triggering the workflow.
+3. Run name should contain information about hash of the commit that triggering the workflow.
+4. Run should have a `python-ci` job with above steps:
+    1. step that runs the tests. (Tests are included in the app.)
+    1. step that generates a coverage with `coverage`
+    1. step that displays the coverage report in the console
+    1. step that checks the code style. (Code style is checked with `flake8`.) - this should not be a blocker for the workflow.
+    1. step that that checks complexity of the code. (Code complexity is checked with `flake8`.) - this should not be a blocker for the workflow.
+    1. step that uploads python code as an artifact (should be executed only from the `main` branch)
