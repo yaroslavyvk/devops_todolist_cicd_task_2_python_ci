@@ -1,4 +1,4 @@
-#  Django ToDo list
+# Django ToDo list
 
 This is a todo list web application with basic features of most web apps, i.e., accounts/login, API, and interactive UI. To do this task, you will need:
 
@@ -19,7 +19,7 @@ Create a database schema:
 python manage.py migrate
 ```
 
-And then start the server (default is http://localhost:8000):
+And then start the server (default is <http://localhost:8000>):
 
 ```
 python manage.py runserver
@@ -40,4 +40,7 @@ Create a GitHub Actions workflow for this project. The workflow should:
     1. step that displays the coverage report in the console
     1. step that checks the code style. (Code style is checked with `flake8`.) - this should not be a blocker for the workflow.
     1. step that that checks complexity of the code. (Code complexity is checked with `flake8`.) - this should not be a blocker for the workflow.
-    1. step that uploads python code as an artifact (should be executed only from the `main` branch)
+    1. step that uploads python code as an artifact
+    1. Python version should be controlled from the variable
+5. Create a PR to this repository with the changes.
+6. PR workflow should be triggered and should pass all the checks.
