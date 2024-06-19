@@ -33,7 +33,7 @@ You can now browse the [API](http://localhost:8000/api/) or start on the [landin
 
 In this task, you have to create a GitHub Actions workflow to automate testing and quality checks for this project. The workflow should adhere to the following specifications:
 
-1. Run every push to the `main` branch and pull requests to the `main` branch.
+1. Run on every push to the `main` and `develop` branches and on pull requests to the `main` branch.
 2. The run name should contain information about the user triggering the workflow.
 3. The run name should contain information about the commit hash that triggered the workflow.
 4. The run should have a `python-ci` job with steps as follows:
