@@ -29,4 +29,4 @@ jobs:
             pip install -r requirements.txt
         - name: Run unit tests with pytest
           run: |
-            pytest -v --cov=. --cov-report=term-missing --cov-report=html
+            pytest -v
