@@ -30,7 +30,7 @@ jobs:
         - name: Lint with flake8
           run: |
             flake8 . --show-source --statistics
-            continue-on-error: true
+          continue-on-error: true
         - name: Check Complexity
           run: |
             cd ../
