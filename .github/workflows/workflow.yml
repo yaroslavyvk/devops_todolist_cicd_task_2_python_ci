@@ -29,4 +29,5 @@ jobs:
             pip install -r requirements.txt
         - name: Run unit test
           run: |
+            cd todolist
             pytest
