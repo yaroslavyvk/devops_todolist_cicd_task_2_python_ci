@@ -25,9 +25,8 @@ jobs:
         - name: Setup Dependencies
           run: |
             python -m pip install --upgrade pip
-            pip install flake8 pytest
+            pip install flake8 pytest pytest-cov
             pip install -r requirements.txt
-        - name: Run unit test
+        - name: Run unit tests with pytest
           run: |
-            cd todolist
-            pytest
+            pytest -v --cov=. --cov-report=term-missing --cov-report=html
