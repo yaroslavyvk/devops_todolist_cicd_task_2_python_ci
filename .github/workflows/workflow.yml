@@ -1,5 +1,5 @@
 name: python-deployment
-run-name: ${{ github.actor }} - ${{ github.ref_name }}
+run-name: ${{ github.actor }} - ${{ github.sha }}
 on:
     push:
         branches: ["main", "develop"]
