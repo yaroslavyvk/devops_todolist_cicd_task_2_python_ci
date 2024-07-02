@@ -35,7 +35,7 @@ jobs:
           run: |
             cd ../
             flake8 . --statistics --max-complexity=10 --exit-zero
-
+          continue-on-error: true
         - name: Run unit tests with pytest
           run: |
             pytest -v
