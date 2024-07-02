@@ -27,6 +27,36 @@ jobs:
             python -m pip install --upgrade pip
             pip install flake8 pytest pytest-cov
             pip install -r requirements.txt
+        - name: Lint with flake8
+          run: |
+            flake8 . --show-source --statistics
+            continue-on-error: true
+        - name: Check Complexity
+          run: |
+            cd ../
+            flake8 . --statistics --max-complexity=10 --exit-zero
+
         - name: Run unit tests with pytest
           run: |
             pytest -v
+            - name: Run coverage tests
+            run: |
+              coverage run manage.py test
+              coverage report
+          
+        - name: Show coverage report
+          run: |
+            coverage report
+            coverage html
+
+        - name: Upload coverage report
+          uses: actions/upload-artifact@v2
+          with:
+            name: coverage-report
+            path: htmlcov
+
+        - name: Upload Python code as an artifact
+          uses: actions/upload-artifact@v2
+          with:
+            name: python-code
+            path: .
