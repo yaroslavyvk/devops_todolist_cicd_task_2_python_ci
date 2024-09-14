@@ -1,0 +1,62 @@
+name: python-deployment
+run-name: ${{ github.actor }} - ${{ github.ref_name }}
+on:
+    push:
+        branches: ["main", "develop"]
+    pull_request:
+        branches: ["main"]
+env:
+  PYTHON_VERSION: 3.8
+
+jobs:
+    python-ci:
+        runs-on: ubuntu-latest
+
+        defaults:
+            run:
+              working-directory: ./src
+
+        steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-python@v5
+          name: Setup Python ${{ env.PYTHON_VERSION}}
+          with:
+            python-version: '${{ env.PYTHON_VERSION}}'
+        - name: Setup Dependencies
+          run: |
+            python -m pip install --upgrade pip
+            pip install flake8 pytest pytest-cov
+            pip install -r requirements.txt
+        - name: Lint with flake8
+          run: |
+            flake8 . --show-source --statistics
+          continue-on-error: true
+        - name: Check Complexity
+          run: |
+            cd ../
+            flake8 . --statistics --max-complexity=10 --exit-zero
+          continue-on-error: true
+        - name: Run unit tests with pytest
+          run: |
+            pytest -v
+        - name: Run coverage tests
+          run: |
+            coverage run manage.py test
+            coverage report
+
+        - name: Show coverage report
+          run: |
+            coverage report
+            coverage html
+
+        - name: Upload coverage report
+          uses: actions/upload-artifact@v4
+          with:
+            name: coverage-report
+            path: htmlcov
+
+        - name: Upload Python code as an artifact
+          uses: actions/upload-artifact@v4
+          with:
+            name: python-code
+            path: .
