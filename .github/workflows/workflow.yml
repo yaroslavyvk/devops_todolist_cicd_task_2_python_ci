@@ -59,11 +59,8 @@ jobs:
           uses: actions/upload-artifact@v4
           with:
             name: coverage-report
-            path: htmlcov
+            path: ./src/htmlcov
 
-        - name: Check if coverage report exists
-          run: |
-            ls -la ./htmlcov
 
         - name: Upload Python code as an artifact
           uses: actions/upload-artifact@v4
